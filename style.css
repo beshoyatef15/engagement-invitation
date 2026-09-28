@@ -1,0 +1,1986 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f5efe8;
+    color: #321417;
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+}
+
+body.lock-scroll {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+    --burgundy: #3a1017;
+    --deep-red: #4c1119;
+    --dark-red: #26090e;
+
+    --ivory: #f7f1e8;
+    --warm-white: #fffaf3;
+
+    --gold: #b59a67;
+
+    --text-dark: #351518;
+    --text-muted: #765d5e;
+
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Inter", Arial, sans-serif;
+
+    --transition: 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+img,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    font-family: inherit;
+}
+
+.section {
+    position: relative;
+    width: 100%;
+}
+
+.eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    line-height: 1.5;
+}
+
+.gold-line {
+    width: 42px;
+    height: 1px;
+    background: var(--gold);
+    margin: 25px auto 0;
+}
+
+.gold-line.left {
+    margin-left: 0;
+}
+
+
+/* =========================================================
+   OPENING SCREEN
+========================================================= */
+
+.opening-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(130, 25, 38, 0.35),
+            transparent 42%
+        ),
+        linear-gradient(
+            135deg,
+            #26080d,
+            #56121c 45%,
+            #310a10
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.opening-content {
+    position: relative;
+    z-index: 10001;
+    pointer-events: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.opening-glow {
+    position: absolute;
+    pointer-events: none;
+    width: 45vw;
+    height: 45vw;
+    max-width: 650px;
+    max-height: 650px;
+
+    background: radial-gradient(
+        circle,
+        rgba(255, 207, 164, 0.10),
+        transparent 70%
+    );
+
+    filter: blur(20px);
+}
+
+
+/* =========================================================
+   VELVET CURTAINS
+========================================================= */
+
+.curtain {
+    position: absolute;
+    top: -5%;
+    width: 53%;
+    height: 110%;
+
+    z-index: 10;
+
+    transition:
+        transform 1.8s cubic-bezier(0.77, 0, 0.175, 1),
+        filter 1.8s ease;
+}
+
+.curtain-left {
+    left: 0;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(20, 2, 5, 0.55) 0px,
+            rgba(255, 80, 100, 0.08) 18px,
+            rgba(20, 2, 5, 0.62) 40px,
+            rgba(120, 20, 32, 0.15) 62px
+        ),
+        linear-gradient(
+            90deg,
+            #1b0509,
+            #5a111b 35%,
+            #35080f 70%,
+            #1d0509
+        );
+
+    box-shadow:
+        inset -30px 0 60px rgba(0, 0, 0, 0.65),
+        inset 25px 0 40px rgba(255, 100, 100, 0.05),
+        15px 0 45px rgba(0, 0, 0, 0.5);
+}
+
+.curtain-right {
+    right: 0;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(20, 2, 5, 0.62) 0px,
+            rgba(120, 20, 32, 0.15) 20px,
+            rgba(255, 80, 100, 0.08) 42px,
+            rgba(20, 2, 5, 0.55) 65px
+        ),
+        linear-gradient(
+            90deg,
+            #1d0509,
+            #35080f 30%,
+            #5a111b 68%,
+            #1b0509
+        );
+
+    box-shadow:
+        inset 30px 0 60px rgba(0, 0, 0, 0.65),
+        inset -25px 0 40px rgba(255, 100, 100, 0.05),
+        -15px 0 45px rgba(0, 0, 0, 0.5);
+}
+
+.opening-screen.opened .curtain-left {
+    transform: translateX(-100%);
+    filter: brightness(0.7);
+}
+
+.opening-screen.opened .curtain-right {
+    transform: translateX(100%);
+    filter: brightness(0.7);
+}
+
+
+/* =========================================================
+   OPEN BUTTON
+========================================================= */
+
+.open-button {
+    position: relative;
+    z-index: 10002;
+    pointer-events: auto;
+
+    width: 118px;
+    height: 118px;
+
+    border: 1px solid rgba(211, 176, 119, 0.65);
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.06),
+            rgba(255,255,255,0)
+        );
+
+    color: #d8b77d;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.5s ease,
+        background 0.5s ease;
+}
+
+.open-button:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.button-ring {
+    position: absolute;
+    inset: 8px;
+
+    border: 1px solid rgba(216, 183, 125, 0.25);
+    border-radius: 50%;
+}
+
+.monogram {
+    font-size: 21px;
+}
+
+.tap-text {
+    margin-top: 22px;
+
+    color: rgba(250, 238, 220, 0.9);
+
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    font-weight: 500;
+
+    padding-left: 0.4em;
+}
+
+.opening-line {
+    width: 1px;
+    height: 45px;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(216,183,125,0.8),
+        transparent
+    );
+
+    margin-top: 24px;
+}
+
+
+/* =========================================================
+   PETALS
+========================================================= */
+
+.petal-container {
+    position: absolute;
+    inset: 0;
+    z-index: 15;
+
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.petal {
+    position: absolute;
+
+    width: 8px;
+    height: 12px;
+
+    background: #d69ba2;
+
+    border-radius: 80% 15% 80% 15%;
+
+    opacity: 0.45;
+
+    animation:
+        petal-fall linear forwards,
+        petal-sway ease-in-out infinite alternate;
+
+    will-change: transform;
+}
+
+@keyframes petal-fall {
+    from {
+        transform: translate3d(0, -20px, 0) rotate(0deg);
+    }
+
+    to {
+        transform: translate3d(
+            var(--drift),
+            110vh,
+            0
+        ) rotate(540deg);
+    }
+}
+
+@keyframes petal-sway {
+    from {
+        margin-left: -12px;
+    }
+
+    to {
+        margin-left: 12px;
+    }
+}
+
+/* =====================================================
+   COUNTDOWN MEMORY FRAME
+   ===================================================== */
+
+.countdown-section {
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   MEMORY FRAME
+   ===================================================== */
+
+.countdown-section .memory-frame {
+
+    position: relative;
+
+    width: 330px;
+
+    margin: 0 auto 55px;
+
+    z-index: 5;
+
+    opacity: 0;
+
+    transform:
+        translateY(55px)
+        scale(.88);
+
+    animation:
+        countdownFrameIn 1.4s
+        cubic-bezier(.22, 1, .36, 1)
+        .3s forwards,
+
+        countdownFrameFloat 6s
+        ease-in-out
+        1.8s infinite;
+}
+
+
+/* =====================================================
+   REALISTIC GOLD FRAME
+   ===================================================== */
+
+.countdown-section .memory-frame::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 5px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+
+            #fff1bf 0%,
+            #b98232 12%,
+            #f5d68e 25%,
+            #936125 42%,
+            #eac56d 58%,
+            #7c4e1d 76%,
+            #f4d995 100%
+        );
+
+    box-shadow:
+
+        0 25px 50px
+        rgba(0,0,0,.45),
+
+        0 8px 18px
+        rgba(0,0,0,.3),
+
+        inset 0 0 0 2px
+        rgba(255,245,205,.8),
+
+        inset 0 0 0 6px
+        rgba(110,70,25,.45),
+
+        inset 0 0 0 9px
+        rgba(255,225,145,.5);
+
+    z-index: -2;
+}
+
+
+/* Inner golden border */
+
+.countdown-section .memory-frame::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 12px;
+
+    border:
+
+        1px solid
+        rgba(255,238,180,.8);
+
+    box-shadow:
+
+        inset 0 0 0 2px
+        rgba(70,40,15,.3);
+
+    z-index: -1;
+}
+
+
+/* =====================================================
+   FRAME INNER
+   ===================================================== */
+
+.countdown-section .memory-frame-inner {
+
+    position: relative;
+
+    margin: 15px;
+
+    padding:
+
+        22px
+        20px
+        18px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #39281c,
+            #211610
+        );
+
+    box-shadow:
+
+        inset 0 0 30px
+        rgba(0,0,0,.55);
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   TITLE
+   ===================================================== */
+
+.countdown-section .memory-frame-top {
+
+    text-align: center;
+
+    margin-bottom: 15px;
+}
+
+.countdown-section .memory-frame-top span {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    color: #f4dca7;
+
+    font-size: 14px;
+
+    letter-spacing: 5px;
+}
+
+
+/* =====================================================
+   PHOTO FRAME
+   ===================================================== */
+
+.countdown-section .memory-photo-frame {
+
+    position: relative;
+
+    padding: 8px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #fff0bc,
+            #a87532,
+            #f4d287,
+            #81521e
+        );
+
+    box-shadow:
+
+        0 12px 25px
+        rgba(0,0,0,.5),
+
+        inset 0 0 0 1px
+        rgba(255,245,200,.8);
+}
+
+
+/* =====================================================
+   SINGLE PHOTO
+   ===================================================== */
+
+.countdown-section .memory-photo {
+
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+
+    overflow: hidden;
+
+    background: #c9b899;
+}
+
+
+.countdown-section .memory-photo img {
+
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    filter:
+
+        sepia(.28)
+        saturate(.8)
+        contrast(.93)
+        brightness(.96);
+
+    transform: scale(1.02);
+}
+
+
+/* Old photo vignette */
+
+.countdown-section .memory-photo::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    box-shadow:
+
+        inset 0 0 30px
+        rgba(40,25,10,.5);
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   PHOTO LIGHT
+   ===================================================== */
+
+.countdown-section .photo-shine {
+
+    position: absolute;
+
+    top: -100%;
+
+    left: -70%;
+
+    width: 45%;
+
+    height: 300%;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.2),
+            transparent
+        );
+
+    transform: rotate(25deg);
+
+    animation:
+
+        countdownPhotoShine 7s
+        ease-in-out
+        3s infinite;
+
+    z-index: 3;
+}
+
+
+/* =====================================================
+   BEFORE WE MET
+   ===================================================== */
+
+.countdown-section .memory-date {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 17px;
+
+    color: #e6c88d;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    white-space: nowrap;
+}
+
+
+.countdown-section .memory-date .line {
+
+    width: 28px;
+
+    height: 1px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            #d9b875
+        );
+}
+
+
+.countdown-section .memory-date .line:last-child {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #d9b875,
+            transparent
+        );
+}
+
+
+/* =====================================================
+   FLOWERS
+   ===================================================== */
+
+.countdown-section .memory-frame-flowers {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+.countdown-section .flower {
+
+    position: absolute;
+
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #efd19e;
+
+    font-size: 40px;
+
+    text-shadow:
+
+        0 4px 8px
+        rgba(0,0,0,.6);
+
+    filter:
+
+        drop-shadow(
+            0 5px 7px
+            rgba(0,0,0,.45)
+        );
+
+    animation:
+
+        countdownFlowerFloat
+        4s ease-in-out
+        infinite;
+}
+
+
+.countdown-section .flower-1 {
+
+    top: -25px;
+
+    left: -27px;
+
+    transform: rotate(-25deg);
+}
+
+
+.countdown-section .flower-2 {
+
+    top: -25px;
+
+    right: -27px;
+
+    transform: rotate(20deg);
+
+    animation-delay: .7s;
+}
+
+
+.countdown-section .flower-3 {
+
+    bottom: -26px;
+
+    left: -25px;
+
+    transform: rotate(20deg);
+
+    animation-delay: 1.2s;
+}
+
+
+.countdown-section .flower-4 {
+
+    bottom: -27px;
+
+    right: -26px;
+
+    transform: rotate(-20deg);
+
+    animation-delay: 1.8s;
+}
+
+
+/* =====================================================
+   FRAME ENTRANCE
+   ===================================================== */
+
+@keyframes countdownFrameIn {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(70px)
+            scale(.78)
+            rotate(-3deg);
+    }
+
+    60% {
+
+        opacity: 1;
+
+        transform:
+            translateY(-6px)
+            scale(1.03)
+            rotate(.5deg);
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1)
+            rotate(0);
+    }
+}
+
+
+/* =====================================================
+   FLOAT
+   ===================================================== */
+
+@keyframes countdownFrameFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+    }
+
+    50% {
+
+        transform:
+            translateY(-7px);
+    }
+}
+
+
+/* =====================================================
+   FLOWER FLOAT
+   ===================================================== */
+
+@keyframes countdownFlowerFloat {
+
+    0%,
+    100% {
+
+        translate: 0 0;
+
+        rotate: 0deg;
+    }
+
+    50% {
+
+        translate: 0 -5px;
+
+        rotate: 3deg;
+    }
+}
+
+
+/* =====================================================
+   PHOTO SHINE
+   ===================================================== */
+
+@keyframes countdownPhotoShine {
+
+    0% {
+
+        left: -70%;
+    }
+
+    35%,
+    100% {
+
+        left: 150%;
+    }
+}
+
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    .countdown-section .memory-frame {
+
+        width: 290px;
+
+        margin-bottom: 45px;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 480px) {
+
+    .countdown-section .memory-frame {
+
+        width: 255px;
+
+        margin-bottom: 38px;
+    }
+
+    .countdown-section .memory-frame-inner {
+
+        margin: 12px;
+
+        padding:
+            18px
+            15px
+            15px;
+    }
+
+    .countdown-section .memory-frame-top span {
+
+        font-size: 11px;
+
+        letter-spacing: 4px;
+    }
+
+    .countdown-section .memory-date {
+
+        font-size: 8px;
+
+        letter-spacing: 2px;
+
+        gap: 6px;
+    }
+
+    .countdown-section .memory-date .line {
+
+        width: 20px;
+    }
+
+    .countdown-section .flower {
+
+        font-size: 30px;
+
+        width: 32px;
+
+        height: 32px;
+    }
+}
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+    position: relative;
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+}
+
+.main-content.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* فيه تعديلين ده الاول */
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    position: relative;
+
+    height: 100svh;
+    min-height: 650px;
+
+    overflow: hidden;
+
+    color: var(--ivory);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-video {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    /* Show the entire video without cropping */
+    object-fit: contain;
+    object-position: center center;
+
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    background: rgba(25, 8, 10, 0.27);
+}
+
+.hero-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(10, 2, 3, 0.48),
+            transparent 30%,
+            transparent 65%,
+            rgba(10, 2, 3, 0.65)
+        );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.hero-item {
+    opacity: 0;
+    transform: translateY(25px);
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero.started .hero-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero.started .hero-item:nth-child(1) {
+    transition-delay: 0.35s;
+}
+
+.hero.started .hero-item:nth-child(2) {
+    transition-delay: 0.55s;
+}
+
+.hero.started .hero-item:nth-child(3) {
+    transition-delay: 0.75s;
+}
+
+.hero.started .hero-item:nth-child(4) {
+    transition-delay: 0.95s;
+}
+
+.hero-divider {
+    width: 35px;
+    height: 1px;
+
+    background: rgba(222, 194, 151, 0.8);
+
+    margin: 23px auto;
+}
+
+
+
+
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    position: relative;
+
+    height: 100svh;
+    min-height: 650px;
+
+    overflow: hidden;
+
+    color: var(--ivory);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-video {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    background: rgba(25, 8, 10, 0.27);
+}
+
+.hero-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(10, 2, 3, 0.48),
+            transparent 30%,
+            transparent 65%,
+            rgba(10, 2, 3, 0.65)
+        );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.hero-item {
+    opacity: 0;
+    transform: translateY(25px);
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero.started .hero-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero.started .hero-item:nth-child(1) {
+    transition-delay: 0.35s;
+}
+
+.hero.started .hero-item:nth-child(2) {
+    transition-delay: 0.55s;
+}
+
+.hero.started .hero-item:nth-child(3) {
+    transition-delay: 0.75s;
+}
+
+.hero.started .hero-item:nth-child(4) {
+    transition-delay: 0.95s;
+}
+
+.hero-divider {
+    width: 35px;
+    height: 1px;
+
+    background: rgba(222, 194, 151, 0.8);
+
+    margin: 23px auto;
+}
+
+
+
+
+
+
+
+
+
+.couple-names {
+    font-family: var(--serif);
+
+    font-weight: 400;
+
+    font-size: clamp(
+        60px,
+        9vw,
+        125px
+    );
+
+    line-height: 0.78;
+
+    letter-spacing: -0.035em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15em;
+
+    white-space: nowrap;
+}
+
+.couple-names .ampersand {
+    font-size: 0.5em;
+
+    font-weight: 300;
+
+    color: #d6bb8c;
+
+    margin: 0 0.05em;
+}
+
+.wedding-date {
+    margin-top: 34px;
+
+    font-family: var(--serif);
+
+    font-size: 19px;
+    letter-spacing: 0.2em;
+
+    padding-left: 0.2em;
+}
+
+
+/* =========================================================
+   SCROLL INDICATOR
+========================================================= */
+
+.scroll-indicator {
+    position: absolute;
+    z-index: 4;
+
+    left: 50%;
+    bottom: 34px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 12px;
+
+    color: rgba(250, 240, 224, 0.75);
+
+    font-size: 8px;
+    letter-spacing: 0.35em;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 45px;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.8),
+        transparent
+    );
+
+    animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+    0%,
+    100% {
+        transform: scaleY(0.65);
+        transform-origin: top;
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: scaleY(1);
+        transform-origin: top;
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+.countdown-section {
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(181,154,103,0.09),
+            transparent 45%
+        ),
+        var(--ivory);
+
+    padding: 150px 30px;
+}
+
+.section-inner {
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+.section h2 {
+    font-family: var(--serif);
+
+    font-weight: 400;
+
+    font-size: clamp(
+        42px,
+        6vw,
+        72px
+    );
+
+    line-height: 0.95;
+
+    margin-top: 20px;
+}
+
+.countdown {
+    margin-top: 70px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    border-top: 1px solid rgba(70, 35, 38, 0.15);
+    border-bottom: 1px solid rgba(70, 35, 38, 0.15);
+}
+
+.countdown-item {
+    position: relative;
+
+    padding: 35px 20px;
+}
+
+.countdown-item + .countdown-item {
+    border-left: 1px solid rgba(70, 35, 38, 0.15);
+}
+
+.count-number {
+    display: block;
+
+    font-family: var(--serif);
+
+    font-size: clamp(
+        48px,
+        6vw,
+        75px
+    );
+
+    line-height: 1;
+
+    font-weight: 400;
+}
+
+.count-label {
+    display: block;
+
+    margin-top: 14px;
+
+    font-size: 8px;
+    letter-spacing: 0.28em;
+
+    color: var(--text-muted);
+}
+
+.countdown-finished {
+    margin-top: 60px;
+
+    font-family: var(--serif);
+
+    font-size: clamp(35px, 5vw, 60px);
+}
+
+
+/* =========================================================
+   DETAILS INTRO
+========================================================= */
+
+.details-intro {
+    background: var(--burgundy);
+
+    color: var(--ivory);
+
+    padding: 180px 30px;
+}
+
+.intro-inner {
+    max-width: 850px;
+    margin: auto;
+
+    text-align: center;
+}
+
+.intro-inner h2 {
+    margin-top: 28px;
+
+    font-size: clamp(
+        40px,
+        6vw,
+        70px
+    );
+
+    line-height: 0.98;
+}
+
+
+/* =========================================================
+   VENUE
+========================================================= */
+
+.venue-section {
+    background: #f1e9df;
+
+    padding: 120px 30px;
+}
+
+.venue-wrapper {
+    max-width: 1180px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(350px, 0.9fr);
+
+    min-height: 650px;
+
+    background: var(--warm-white);
+
+    box-shadow:
+        0 25px 80px rgba(48, 20, 22, 0.10);
+}
+
+.venue-image-wrapper {
+    position: relative;
+
+    min-height: 600px;
+
+    overflow: hidden;
+}
+
+.venue-image-wrapper img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 1.5s ease;
+}
+
+.venue-wrapper:hover
+.venue-image-wrapper img {
+    transform: scale(1.035);
+}
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 50%,
+            rgba(20, 5, 6, 0.45)
+        );
+}
+
+.image-label {
+    position: absolute;
+
+    left: 30px;
+    bottom: 30px;
+
+    color: white;
+
+    font-size: 8px;
+    letter-spacing: 0.35em;
+}
+
+.venue-content {
+    padding: 85px 70px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.venue-content h2 {
+    font-size: clamp(
+        48px,
+        5vw,
+        70px
+    );
+
+    margin-top: 18px;
+}
+
+.event-details {
+    margin-top: 55px;
+}
+
+.detail-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 23px 0;
+
+    border-bottom: 1px solid rgba(50, 21, 24, 0.13);
+}
+
+.detail-row:first-child {
+    border-top: 1px solid rgba(50, 21, 24, 0.13);
+}
+
+.detail-icon {
+    width: 36px;
+
+    color: var(--gold);
+
+    font-size: 18px;
+
+    text-align: center;
+}
+
+.detail-label {
+    display: block;
+
+    font-size: 8px;
+
+    letter-spacing: 0.25em;
+
+    color: var(--text-muted);
+
+    margin-bottom: 5px;
+}
+
+.detail-row strong {
+    font-family: var(--serif);
+
+    font-size: 21px;
+
+    font-weight: 500;
+}
+
+.directions-button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    width: 100%;
+
+    padding: 18px 25px;
+
+    margin-top: 45px;
+
+    border: 1px solid var(--burgundy);
+
+    color: var(--burgundy);
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    letter-spacing: 0.25em;
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease;
+}
+
+.directions-button:hover {
+    background: var(--burgundy);
+    color: var(--ivory);
+}
+
+
+/* =========================================================
+   CLOSING
+========================================================= */
+
+.closing-section {
+    min-height: 650px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 100px 30px;
+
+    color: var(--ivory);
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(142, 42, 54, 0.25),
+            transparent 45%
+        ),
+        var(--dark-red);
+
+    text-align: center;
+}
+
+.closing-content {
+    max-width: 800px;
+}
+
+.closing-heart {
+    font-size: 17px;
+
+    color: var(--gold);
+
+    margin-bottom: 30px;
+}
+
+.closing-content h2 {
+    margin-top: 25px;
+
+    font-size: clamp(
+        43px,
+        6vw,
+        72px
+    );
+
+    line-height: 0.95;
+}
+
+.closing-names {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+
+    margin-top: 35px;
+
+    font-family: var(--serif);
+
+    font-size: 25px;
+
+    color: #dcc59d;
+}
+
+
+/* =========================================================
+   MUSIC CONTROL
+========================================================= */
+
+.music-control {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    z-index: 500;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(181,154,103,0.65);
+
+    background: rgba(45, 12, 17, 0.82);
+
+    color: #e0c89d;
+
+    backdrop-filter: blur(12px);
+
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.6s ease,
+        visibility 0.6s ease,
+        transform 0.3s ease;
+}
+
+.music-control.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.music-control:hover {
+    transform: scale(1.08);
+}
+
+.music-control.playing .music-icon {
+    animation: musicRotate 3s linear infinite;
+}
+
+@keyframes musicRotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform:
+        translateY(45px)
+        scale(0.985);
+
+    transition:
+        opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .hero {
+        min-height: 600px;
+    }
+
+    .couple-names {
+        font-size: clamp(
+            52px,
+            14vw,
+            90px
+        );
+
+        flex-direction: column;
+
+        gap: 5px;
+
+        line-height: 0.72;
+    }
+
+    .couple-names .ampersand {
+        font-size: 0.4em;
+
+        margin: 4px 0;
+    }
+
+    .wedding-date {
+        font-size: 16px;
+    }
+
+    .countdown-section {
+        padding: 110px 20px;
+    }
+
+    .countdown {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        margin-top: 50px;
+    }
+
+    .countdown-item:nth-child(3) {
+        border-left: 0;
+        border-top: 1px solid rgba(70, 35, 38, 0.15);
+    }
+
+    .countdown-item:nth-child(4) {
+        border-top: 1px solid rgba(70, 35, 38, 0.15);
+    }
+
+    .details-intro {
+        padding: 130px 25px;
+    }
+
+    .venue-section {
+        padding: 70px 18px;
+    }
+
+    .venue-wrapper {
+        display: block;
+    }
+
+    .venue-image-wrapper {
+        min-height: 480px;
+    }
+
+    .venue-content {
+        padding: 60px 30px;
+    }
+
+    .venue-content h2 {
+        font-size: 52px;
+    }
+
+    .event-details {
+        margin-top: 40px;
+    }
+
+    .closing-section {
+        min-height: 560px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .open-button {
+        width: 105px;
+        height: 105px;
+    }
+
+    .opening-line {
+        height: 35px;
+    }
+
+    .hero-content {
+        padding: 20px;
+    }
+
+    .hero .eyebrow {
+        font-size: 8px;
+    }
+
+    .couple-names {
+        font-size: 58px;
+    }
+
+    .wedding-date {
+        margin-top: 27px;
+        font-size: 14px;
+    }
+
+    .scroll-indicator {
+        bottom: 25px;
+    }
+
+    .section h2 {
+        font-size: 44px;
+    }
+
+    .countdown-item {
+        padding: 28px 10px;
+    }
+
+    .count-number {
+        font-size: 45px;
+    }
+
+    .count-label {
+        font-size: 7px;
+    }
+
+    .venue-image-wrapper {
+        min-height: 400px;
+    }
+
+    .venue-content {
+        padding: 50px 24px;
+    }
+
+    .venue-content h2 {
+        font-size: 46px;
+    }
+
+    .detail-row strong {
+        font-size: 19px;
+    }
+
+    .closing-names {
+        font-size: 21px;
+        gap: 10px;
+    }
+
+    .music-control {
+        right: 18px;
+        bottom: 18px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .petal-container {
+        display: none;
+    }
+
+    .scroll-line {
+        animation: none;
+    }
+
+    .music-control.playing .music-icon {
+        animation: none;
+    }
+}
+/* =========================================================
+   OPENING SCREEN FINAL STATE
+   Keeps the opening layer completely out of the way after
+   the curtain animation has finished.
+========================================================= */
+.opening-screen.closed {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+}

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <meta name="description" content="A cinematic invitation">
+
+    <title>Wedding Invitation</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         OPENING EXPERIENCE
+    ====================================================== -->
+
+    <div id="opening-screen" class="opening-screen" aria-label="ENGAGED invitation opening screen">
+
+        <!-- Velvet Curtains -->
+        <div class="curtain curtain-left"></div>
+        <div class="curtain curtain-right"></div>
+
+        <!-- Decorative light -->
+        <div class="opening-glow"></div>
+
+        <!-- Petals -->
+        <div id="opening-petals" class="petal-container"></div>
+
+        <!-- Opening Content -->
+        <div class="opening-content">
+
+            <button id="open-invitation" class="open-button" aria-label="Open ENGAGED invitation">
+                <span class="button-ring"></span>
+
+                <span class="monogram">
+                    <i class="fa-solid fa-heart"></i>
+                </span>
+            </button>
+
+            <p class="tap-text">TAP TO OPEN</p>
+
+            <div class="opening-line"></div>
+
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         MAIN WEBSITE
+    ====================================================== -->
+
+    <main id="main-content" class="main-content">
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section id="hero" class="hero">
+
+            <video id="hero-video" class="hero-video" autoplay muted loop playsinline preload="metadata"
+                aria-hidden="true">
+                <source src="assets/hero-video.mp4" type="video/mp4">
+            </video>
+
+            <div class="hero-overlay"></div>
+            <div class="hero-vignette"></div>
+
+            <div class="hero-content">
+
+                <p class="eyebrow hero-item">
+                    WE WILL GET ENGAGED
+                </p>
+
+                <div class="hero-divider hero-item"></div>
+
+                <h1 class="couple-names hero-item">
+                    <span id="groom-name"> NAME</span>
+                    <span class="ampersand">&amp;</span>
+                    <span id="bride-name"> NAME</span>
+                </h1>
+
+                <p id="display-date" class="wedding-date hero-item">
+                    30 · 9 · 2026
+                </p>
+
+
+
+
+            </div>
+
+            <div class="scroll-indicator">
+                <span>SCROLL</span>
+                <div class="scroll-line"></div>
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             COUNTDOWN
+        ================================================== -->
+
+        <section class="section countdown-section">
+
+            <!-- =========================================
+         CHILDHOOD MEMORY FRAME
+         ========================================= -->
+            <div class="memory-frame">
+
+                <div class="memory-frame-flowers">
+                    <span class="flower flower-1">✿</span>
+                    <span class="flower flower-2">❀</span>
+                    <span class="flower flower-3">✿</span>
+                    <span class="flower flower-4">❀</span>
+                </div>
+
+                <div class="memory-frame-inner">
+
+                    <div class="memory-photo-frame">
+
+                        <div class="memory-photo">
+
+                            <img src="assets/WhatsApp Image 2026-09-20 at 12.25.46 PM.jpeg" alt="">
+
+                            <div class="photo-shine"></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="memory-date">
+
+                        <span class="line"></span>
+
+                        <span class="line"></span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="section-inner reveal">
+
+
+                <h2>
+                    COUNTDOWN
+                </h2>
+
+                <div class="gold-line"></div>
+
+                <div id="countdown" class="countdown" aria-label="Wedding countdown">
+
+                    <div class="countdown-item">
+                        <span id="days" class="count-number">00</span>
+                        <span class="count-label">DAYS</span>
+                    </div>
+
+                    <div class="countdown-item">
+                        <span id="hours" class="count-number">00</span>
+                        <span class="count-label">HOURS</span>
+                    </div>
+
+                    <div class="countdown-item">
+                        <span id="minutes" class="count-number">00</span>
+                        <span class="count-label">MINUTES</span>
+                    </div>
+
+                    <div class="countdown-item">
+                        <span id="seconds" class="count-number">00</span>
+                        <span class="count-label">SECONDS</span>
+                    </div>
+
+                </div>
+
+                <p id="countdown-finished" class="countdown-finished" hidden>
+                    TODAY IS THE DAY
+                </p>
+
+            </div>
+
+        </section> 
+
+        <!-- =================================================
+             DETAILS INTRO
+        ================================================== -->
+
+        <section class="details-intro section">
+
+            <div class="intro-inner reveal">
+
+                <p class="eyebrow">
+                    DETALIS OF THE DAY
+                </p>
+
+                <h2>
+                    EVERYTHING YOU NEED TO KNOW
+                    ABOUT OUR SPECIAL DAY
+                </h2>
+
+                <div class="gold-line"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             VENUE
+        ================================================== -->
+
+        <section class="venue-section section">
+
+            <div class="venue-wrapper reveal">
+
+                <div class="venue-image-wrapper">
+
+                    <img id="venue-image" src="assets/i1.jpeg" alt="Wedding venue" loading="lazy">
+
+                    <div class="image-overlay"></div>
+
+
+
+                </div>
+
+
+                <div class="venue-content">
+
+                    <p class="eyebrow">
+                        LOCATION
+                    </p>
+
+                    <h2 id="venue-name">
+                        VENUE NAME
+                    </h2>
+
+                    <div class="gold-line left"></div>
+
+
+                    <div class="event-details">
+
+                        <div class="detail-row">
+
+                            <div class="detail-icon">
+                                <i class="fa-regular fa-compass"></i>
+                            </div>
+
+                            <div>
+                                <span class="detail-label">
+                                    LOCATION
+                                </span>
+
+                                <strong id="venue-location">
+                                    Bride's House
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-row">
+
+                            <div class="detail-icon">
+                                <i class="fa-regular fa-calendar"></i>
+                            </div>
+
+                            <div>
+                                <span class="detail-label">
+                                    DATE
+                                </span>
+
+                                <strong id="venue-date">
+                                    12 · 10 · 2026
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-row">
+
+                            <div class="detail-icon">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
+
+                            <div>
+                                <span class="detail-label">
+                                    TIME
+                                </span>
+
+                                <strong id="venue-time">
+                                    7:00 PM
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <a id="maps-link" class="directions-button" href="#" target="_blank" rel="noopener noreferrer">
+                        <span>GET DIRECTIONS</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FINAL SECTION
+        ================================================== -->
+
+        <section class="closing-section section">
+
+            <div class="closing-content reveal">
+
+                <div class="closing-heart">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <p class="eyebrow">
+                    WITH LOVE
+                </p>
+
+
+                <h2>
+                    WE LOOK FORWARD TO
+                    CELEBRATING THIS SPECIAL
+                    DAY WITH YOU.
+                </h2>
+
+                <div class="gold-line"></div>
+
+                <p class="closing-names">
+                    <span id="closing-groom">GROOM NAME</span>
+                    <span>&amp;</span>
+                    <span id="closing-bride">BRIDE NAME</span>
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         MUSIC CONTROL
+    ====================================================== -->
+
+    <audio id="background-music" loop preload="none">
+        <source src="assets/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- <button id="music-control" class="music-control" aria-label="Pause music" aria-pressed="true">
+        <span class="music-icon">
+            <i class="fa-solid fa-music"></i>
+        </span>
+    </button> -->
+
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
