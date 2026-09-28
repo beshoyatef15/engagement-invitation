@@ -34,7 +34,7 @@ const weddingConfig = {
     heroVideo: "assets/hero-video.mp4",
 
     // BACKGROUND MUSIC
-    music: "assets/music.mp4"
+    music: "assets/videoplayback.m4a"
 
 };
 
